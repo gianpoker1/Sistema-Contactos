@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head th:replace="~{common/cabecero::cabecero-seccion(titulo='Inicio')}">
+</head>
+<body>
+<div th:replace="~{common/navbar::navbar-seccion}" />
+<!--Tabla contenido-->
+    <div class="container">
+        <div class="container text-center" style="margin:30px">
+            <h3>Gestion Contactos</h3>
+        </div>
+        <div class="container">
+            <table class="table table-striped table-hover align-middle table-bordered">
+                <thead class="table-dark text-center">
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Telefono</th>
+                    <th scope="col">Email</th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                <tr th:each="contacto: ${contactos}">
+                    <th th:text="${contacto.idContacto}" scope="row">1</th>
+                    <td th:text="${contacto.nombre}"></td>
+                    <td th:text="${contacto.telefono}"></td>
+                    <td th:text="${contacto.email}"></td>
+                    <td class="text-center">
+                        <div class="container">
+                            <a th:href="@{/editar/{id}(id=${contacto.idContacto})}"
+                               class="btn btn-warning btn-sm me-3">Editar</a>
+                            <a th:href="@{/eliminar/{id}(id=${contacto.idContacto})}"
+                               class="btn btn-sm btn-danger">Eliminar</a>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+<div th:replace="~{common/pie-pagina::pie-pagina-seccion}"/>
+</body>
+</html>
